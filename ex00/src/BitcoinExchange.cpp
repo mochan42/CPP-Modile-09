@@ -6,8 +6,8 @@
 /*   By: moninechan <moninechan@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:50:51 by moninechan        #+#    #+#             */
-/*   Updated: 2023/04/06 11:51:44 by moninechan       ###   ########.fr       */
+/*   Updated: 2023/04/06 21:55:49 by moninechan       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#include "BitcoinExchange.h"
