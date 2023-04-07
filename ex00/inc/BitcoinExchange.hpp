@@ -6,7 +6,7 @@
 /*   By: moninechan <moninechan@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:50:47 by moninechan        #+#    #+#             */
-/*   Updated: 2023/04/06 12:12:12 by moninechan       ###   ########.fr       */
+/*   Updated: 2023/04/06 23:17:12 by moninechan       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstring>  
+#include <algorithm>
+#include <map>
 
 
 #endif
