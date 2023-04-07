@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:50:51 by moninechan        #+#    #+#             */
-/*   Updated: 2023/04/07 12:32:17 by mochan           ###   ########.fr       */
+/*   Updated: 2023/04/07 12:34:33 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void    BitcoinExchange::storeDatabase(const std::string& inputFilePath)
 	std::string	line;
 	std::string	parsedLine;
     std::getline(inputFile, line); // Skip the first line
-	// int i = 0;
 	while(getline(inputFile, line))
 	{
 		char	*ptrDate;
@@ -75,15 +74,9 @@ void    BitcoinExchange::storeDatabase(const std::string& inputFilePath)
 		std::cout << linePtr << "\n";
 		int		btcExchangeRateInt;
 		ptrDate = std::strtok(linePtr, " , "); // return pointer to 1st token (Date), replace the first token with '\0'
-		// std::cout << ptrDate << "\n";
 		ptrBtcExchangeRate = strtok (NULL, " , "); // replace '\0' with delimiter, returns pointer to next token (BtcExchangeRate). 
-		// std::cout << ptrBtcExchangeRate << "\n";
 		btcExchangeRateInt = atoi(ptrBtcExchangeRate);
-		// std::cout << btcExchangeRateInt << "\n";
 		this->_btcExchangeRate.insert(std::pair<std::string, int > (ptrDate, btcExchangeRateInt));
-		// std::cout << strdup(ptrDate) << " | "  << "\n";
-		std::cout << ptrDate << " | " << btcExchangeRateInt << "\n";
-		// i++;
 	}
 	inputFile.close();
 }
