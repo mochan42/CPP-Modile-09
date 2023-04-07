@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:50:51 by moninechan        #+#    #+#             */
-/*   Updated: 2023/04/07 12:34:33 by mochan           ###   ########.fr       */
+/*   Updated: 2023/04/07 12:47:35 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,19 @@ std::map<std::string, int>	BitcoinExchange::getExchangeRateMap()
 	return _btcExchangeRate;
 }
 
-void    BitcoinExchange::storeDatabase(const std::string& inputFilePath)
+void    BitcoinExchange::storeDatabase(const std::string& infilePath)
 {
-    std::ifstream inputFile(inputFilePath);
-    if (!inputFile.is_open())
-    {
-    	std::cout << RED << "Error:file could not be opened" << D << "\n";
+	std::ifstream infile(infilePath);
+	if (!infile.is_open())
+	{
+		std::cout << RED << "Error:file could not be opened" << D << "\n";
 		return ;
-    }
+	}
 
 	std::string	line;
 	std::string	parsedLine;
-    std::getline(inputFile, line); // Skip the first line
-	while(getline(inputFile, line))
+    std::getline(infile, line); // Skip the first line
+	while(getline(infile, line))
 	{
 		char	*ptrDate;
 		char	*ptrBtcExchangeRate;
@@ -78,5 +78,5 @@ void    BitcoinExchange::storeDatabase(const std::string& inputFilePath)
 		btcExchangeRateInt = atoi(ptrBtcExchangeRate);
 		this->_btcExchangeRate.insert(std::pair<std::string, int > (ptrDate, btcExchangeRateInt));
 	}
-	inputFile.close();
+	infile.close();
 }

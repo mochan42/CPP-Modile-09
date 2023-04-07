@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:50:47 by moninechan        #+#    #+#             */
-/*   Updated: 2023/04/07 12:14:43 by mochan           ###   ########.fr       */
+/*   Updated: 2023/04/07 12:47:14 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class	BitcoinExchange
 		BitcoinExchange& operator=(const BitcoinExchange& src);
 		~BitcoinExchange();
 
-		void    							storeDatabase(const std::string& inputFilePath);
+		void    							storeDatabase(const std::string& infilePath);
 		std::map<std::string, int>			getExchangeRateMap();
 		void    							setExchangeRate(const std::pair<std::string, int>& exchangeRate);
 
