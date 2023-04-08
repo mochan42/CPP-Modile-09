@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:20:42 by mochan            #+#    #+#             */
-/*   Updated: 2023/04/08 17:53:42 by mochan           ###   ########.fr       */
+/*   Updated: 2023/04/08 18:26:34 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 #include <iostream>
 #include <algorithm>
+#include <string>
+#include <cstring>
 #include <vector>
 #include <list>
 
