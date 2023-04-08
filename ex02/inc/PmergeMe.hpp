@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:20:42 by mochan            #+#    #+#             */
-/*   Updated: 2023/04/08 18:26:34 by mochan           ###   ########.fr       */
+/*   Updated: 2023/04/08 19:02:59 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,15 @@ class	PmergeMe
 		PmergeMe(const PmergeMe& src);
 		PmergeMe& operator=(const PmergeMe& src);
 		~PmergeMe();
+		
+		std::vector<int>	getInputVector();
+		void				addNumberToVector(int setNumberValue);
+		void				storeCollectiontoVector(char **argv);
+		void				printInputVector();
 
 	private:
-
+		std::vector<int>	_inputVector;
+		std::list<int>		_inputList;
 };
-
 
 #endif

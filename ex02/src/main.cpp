@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:20:54 by mochan            #+#    #+#             */
-/*   Updated: 2023/04/08 18:29:28 by mochan           ###   ########.fr       */
+/*   Updated: 2023/04/08 19:04:48 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,13 @@ int	check_input(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
-	int		b_input_nok;
+	int			b_input_nok;
+	PmergeMe	collection;
 
 	b_input_nok = check_input(argc, argv);
 	if (b_input_nok > 0)
 		std::cout << RED << "Error: Input not correct." << D << "\n";
+	collection.storeCollectiontoVector(argv);
+	collection.printInputVector();
 	return (0);
 }
