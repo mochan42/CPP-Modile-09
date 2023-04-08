@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:50:47 by moninechan        #+#    #+#             */
-/*   Updated: 2023/04/07 18:59:50 by mochan           ###   ########.fr       */
+/*   Updated: 2023/04/08 17:06:55 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,20 @@ class	BitcoinExchange
 		BitcoinExchange& operator=(const BitcoinExchange& src);
 		~BitcoinExchange();
 
-		void						storeMap(const std::string& targetMap, const std::string& infilePath, const std::string& delimiter);
-		// void						storeInput(const std::string& infilePath);
-		// void    					storeDatabase(const std::string& infilePath);
-		void						printBtcValue(const std::string& infilePath);
-		std::map<std::string, int>	getInputMap();
-		void    					setInput(const std::pair<std::string, int>& setInput);
-		std::map<std::string, int>	getExchangeRateMap();
-		void    					setExchangeRate(const std::pair<std::string, int>& exchangeRate);
+		void							checkFileCanBeOpened(std::ifstream& file);
+		void							storeDatabase(const std::string& infilePath);
+		float							findBtcRate(std::string date);
+		void							printBtcValue(const std::string& infilePath);
+		std::map<std::string, float>	getInputMap();
+		void    						setInput(const std::pair<std::string, float>& setInput);
+		std::map<std::string, float>	getExchangeRateMap();
+		void    						setExchangeRate(const std::pair<std::string, float>& exchangeRate);
 
 	private:
-		std::map<std::string, int>	_btcExchangeRate;
-		std::map<std::string, int>	_input;
+		std::map<std::string, float>	_btcExchangeRate;
+		std::map<std::string, float>	_input;
 };
 
-void	printExchangeRate(const std::pair<std::string, int>& exchangeRate);
+void	printExchangeRate(const std::pair<std::string, float>& exchangeRate);
 
 #endif
