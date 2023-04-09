@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moninechan <moninechan@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:21:01 by mochan            #+#    #+#             */
-/*   Updated: 2023/04/08 21:40:03 by mochan           ###   ########.fr       */
+/*   Updated: 2023/04/09 10:49:50 by moninechan       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ void	PmergeMe::printInputVector()
 {
 	std::vector<int>::iterator it;
 
-	std::cout << "std::vector\t: ";
+	// std::cout << "std::vector\t: ";
 	for (it = getInputVector().begin(); it != getInputVector().end(); it++)
 	{
-		std::cout << *it << " - ";
+		std::cout << *it << " ";
 	}
 	std::cout << "\n";
 }
@@ -102,73 +102,32 @@ void	PmergeMe::printInputList()
 {
 	std::list<int>::iterator it;
 
-	std::cout << "std::list\t: ";
+	// std::cout << "std::list\t: ";
 	for (it = getInputList().begin(); it != getInputList().end(); it++)
 	{
-		std::cout << *it << " - ";
+		std::cout << *it << " ";
 	}
 	std::cout << "\n";
 }
 
-
-//======== FUNCTIONS ============================================================================
-int	check_for_not_a_digit(char *s)
+bool	PmergeMe::checkDuplicate()
 {
-	if (*s && (*s == '-' || *s == '+'))
-		s++;
-	while (*s)
-	{
-		if (isdigit(*s) != 1)
-			return (1);
-		s++;
-	}
-	return (0);
+	bool hasDuplicate = false;
+    std::set<int> set(getInputVector().begin(), getInputVector().end()); // copy elements of vec into a set
+
+    if (set.size() == getInputVector().size())
+        hasDuplicate = false;
+    else
+        hasDuplicate = true;
+	return (hasDuplicate);
 }
 
-int	out_of_range_number(char *s)
-{
-	long	c;
-
-	c = strtol(s, NULL, 10);
-	if (c < MIN_INT || c > MAX_INT || strlen(s) > 11)
-		return (1);
-	return (0);
-}
-
-int	check_input_method_2(int n, char **args)
-{
-	int	i;
-	int	err_1;
-	int	err;
-
-	i = 1;
-	err = 0;
-	while (i < n)
-	{
-		err_1 = check_for_not_a_digit(args[i]) + out_of_range_number(args[i]);
-		err = err + err_1;
-		i++;
-	}
-	return (err);
-}
-
-int	check_input(int argc, char **argv)
-{
-	int		err;
-
-	err = 0;
-	if (argc == 1)
-		;
-	if (argc > 1)
-		err = check_input_method_2(argc, argv);
-	return (err);
-}
 
 //======== ALGO ============================================================================
 
 const int K = 2;
 
-void insertionSort(int A[], int first, int middle)
+void	vectFJMIinsertionSort(std::vector<int>& A, int first, int middle)
 {
     for (int i = first; i < middle; i++)
     {
@@ -181,15 +140,11 @@ void insertionSort(int A[], int first, int middle)
         }
         A[j] = tempVal;
     }
-    std::vector<int> temp(A + first, A + middle + 1);
-    for (size_t i = 0; i < temp.size(); i++) {
-        std::cout << temp[i] << " ";
-    }
-    std::cout << std::endl;
 }
 
 // A = {5, 4, 3, 2, 1}
-void merge(int A[], int first, int middle, int last)
+// void merge(int A[], int first, int middle, int last)
+void	vectFJMImerge(std::vector<int>& A, int first, int middle, int last)
 {
 	int n1 = middle - first + 1; // length of left array n1 = 3
 	int n2 = last - middle; // length of right array  n2 = 2
@@ -230,16 +185,71 @@ void merge(int A[], int first, int middle, int last)
 	}
 }
 
-void sort(int A[], int first, int last)
+// void sort(int A[], int first, int last)
+void vectFJMIsort(std::vector<int>& A, int first, int last)
 {
     int n = last - first + 1;
     if (n > K) // K == 2 since we want to pair the values into sub-arrays of size 2
     {
         int middle = (first + last) / 2; // 1st. iteration q = 0 + n - 1 / 2
-        sort(A, first, middle); // 2nd. sort it 0 -> middle | left hand side
-        sort(A, middle + 1, last); // 3rd. it middle -> n - 1 | right hand side
-        merge(A, first, middle, last);
+        vectFJMIsort(A, first, middle); // 2nd. sort it 0 -> middle | left hand side
+        vectFJMIsort(A, middle + 1, last); // 3rd. it middle -> n - 1 | right hand side
+        vectFJMImerge(A, first, middle, last);
     }
     else
-        insertionSort(A, first, last);
+        vectFJMIinsertionSort(A, first, last);
+}
+
+
+//======== FUNCTIONS ============================================================================
+int	checkIsDigit(char *s)
+{
+	if (*s && (*s == '-' || *s == '+'))
+		s++;
+	while (*s)
+	{
+		if (isdigit(*s) != 1)
+			return (1);
+		s++;
+	}
+	return (0);
+}
+
+int	checkOutOfRange(char *s)
+{
+	long	c;
+
+	c = strtol(s, NULL, 10);
+	if (c < MIN_INT || c > MAX_INT || strlen(s) > 11)
+		return (1);
+	return (0);
+}
+
+int	checkIsDigitAndOutOfRange(int n, char **args)
+{
+	int	i;
+	int	err_1;
+	int	err;
+
+	i = 1;
+	err = 0;
+	while (i < n)
+	{
+		err_1 = checkIsDigit(args[i]) + checkOutOfRange(args[i]);
+		err = err + err_1;
+		i++;
+	}
+	return (err);
+}
+
+int	checkInput(int argc, char **argv)
+{
+	int		err;
+
+	err = 0;
+	if (argc == 1)
+		;
+	if (argc > 1)
+		err = checkIsDigitAndOutOfRange(argc, argv);
+	return (err);
 }
