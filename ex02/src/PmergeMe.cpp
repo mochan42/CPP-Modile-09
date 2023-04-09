@@ -6,7 +6,7 @@
 /*   By: moninechan <moninechan@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:21:01 by mochan            #+#    #+#             */
-/*   Updated: 2023/04/09 10:13:17 by moninechan       ###   ########.fr       */
+/*   Updated: 2023/04/09 10:49:50 by moninechan       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ void	PmergeMe::printInputVector()
 {
 	std::vector<int>::iterator it;
 
-	std::cout << "std::vector\t: ";
+	// std::cout << "std::vector\t: ";
 	for (it = getInputVector().begin(); it != getInputVector().end(); it++)
 	{
-		std::cout << *it << " - ";
+		std::cout << *it << " ";
 	}
 	std::cout << "\n";
 }
@@ -102,10 +102,10 @@ void	PmergeMe::printInputList()
 {
 	std::list<int>::iterator it;
 
-	std::cout << "std::list\t: ";
+	// std::cout << "std::list\t: ";
 	for (it = getInputList().begin(); it != getInputList().end(); it++)
 	{
-		std::cout << *it << " - ";
+		std::cout << *it << " ";
 	}
 	std::cout << "\n";
 }

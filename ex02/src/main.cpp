@@ -6,7 +6,7 @@
 /*   By: moninechan <moninechan@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:20:54 by mochan            #+#    #+#             */
-/*   Updated: 2023/04/09 10:12:47 by moninechan       ###   ########.fr       */
+/*   Updated: 2023/04/09 10:59:32 by moninechan       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,16 @@ int main(int argc, char **argv)
 		std::cout << RED << "Error: Input has duplicates." << D << "\n";
 		return (0);
 	}
-	std::cout << "before : ";
+	std::cout << "Before:\t";
 	collection.printInputVector();
-	std::cout << "before : ";
-	collection.printInputList();
+	// std::cout << "before\t: ";
+	// collection.printInputList();
+	clock_t start = clock();
 	vectFJMIsort(collection.getInputVector(), 0, collection.getInputVector().size() - 1);
-	std::cout << "after : ";
+	clock_t end = clock();
+	double time_taken = double(end - start) / CLOCKS_PER_SEC;
+	std::cout << "After:\t";
 	collection.printInputVector();
+	std::cout << "Time to process a range of " << collection.getInputVector().size() << " elements with std::vector<int> : " << std::fixed << time_taken * 1000000 << std::setprecision(5) << " usec\n";
 	return (0);
 }
