@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moninechan <moninechan@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:21:01 by mochan            #+#    #+#             */
-/*   Updated: 2023/04/08 21:40:03 by mochan           ###   ########.fr       */
+/*   Updated: 2023/04/09 09:31:01 by moninechan       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,18 @@ void	PmergeMe::printInputList()
 		std::cout << *it << " - ";
 	}
 	std::cout << "\n";
+}
+
+bool	PmergeMe::checkDuplicate()
+{
+	bool hasDuplicate = false;
+    std::set<int> set(getInputVector().begin(), getInputVector().end()); // copy elements of vec into a set
+
+    if (set.size() == getInputVector().size())
+        hasDuplicate = false;
+    else
+        hasDuplicate = true;
+	return (hasDuplicate);
 }
 
 

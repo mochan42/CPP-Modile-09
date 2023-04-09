@@ -3,87 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moninechan <moninechan@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:20:54 by mochan            #+#    #+#             */
-/*   Updated: 2023/04/08 20:40:27 by mochan           ###   ########.fr       */
+/*   Updated: 2023/04/09 09:28:39 by moninechan       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.h" 
 
-void insertionSort(int A[], int p, int q)
+int	check_for_duplicate(int argc, char **argv)
 {
-	for (int i = p; i < q; i++) {
-		int tempVal = A[i + 1];
-		int j = i + 1;
-		while (j > p && A[j - 1] > tempVal) {
-			A[j] = A[j - 1];
-			j--;
-		}
-		A[j] = tempVal;
+	int	*list_of_numbers;
+	int	i;
+	int	j;
+	int	b_duplicate;
+
+	b_duplicate = 0;
+	list_of_numbers = (int *)malloc(sizeof(int) * (argc - 1));
+	if (list_of_numbers == NULL)
+		return (1);
+	i = -1;
+	while (++i < argc - 1)
+		list_of_numbers[i] = atoi(argv[i + 1]);
+	i = -1;
+	while (++i < argc - 2)
+	{
+		j = i;
+		while (++j < argc - 1)
+			if (list_of_numbers[i] == list_of_numbers[j])
+				b_duplicate = 1;
 	}
-	std::vector<int> temp(A + p, A + q + 1);
-	for (size_t i = 0; i < temp.size(); i++) {
-		std::cout << temp[i] << " ";
-	}
-	std::cout << std::endl;
+	free(list_of_numbers);
+	list_of_numbers = NULL;
+	return (b_duplicate);
 }
 
-void merge(int A[], int p, int q, int r)
-{
-	int n1 = q - p + 1;
-	int n2 = r - q;
-	int LA[n1];
-	int RA[n2];
-	for (int i = 0; i < n1; i++)
-		LA[i] = A[p + i];
-	for (int i = 0; i < n2; i++)
-		RA[i] = A[q + 1 + i];
-	int RIDX = 0;
-	int LIDX = 0;
-	for (int i = p; i <= r; i++)
-	{
-		if (RIDX == n2) {
-			A[i] = LA[LIDX];
-			LIDX++;
-		} else if (LIDX == n1) {
-			A[i] = RA[RIDX];
-			RIDX++;
-		} else if (RA[RIDX] > LA[LIDX]) {
-			A[i] = LA[LIDX];
-			LIDX++;
-		} else {
-			A[i] = RA[RIDX];
-			RIDX++;
-		}
-	}
-}
-
-
-// p is the index of the first element to sort in the collection.
-// r is the index of the last element to sort in the collection.
-void sort(int A[], int p, int r)
-{
-	std::cout << p ", " << r << "\n";
-	int n = r - p + 1; //Size of the collection
-	if (n > 2)
-	{
-		int q = (p + r) / 2;
-		sort(A, p, q);
-		sort(A, q + 1, r);
-		merge(A, p, q, r);
-	}
-	else
-	{
-		insertionSort(A, p, r);
-	}
-}
 
 int main(int argc, char **argv)
 {
 	int			b_input_nok;
 	PmergeMe	collection;
+	bool		hasDuplicate;
 
 	b_input_nok = check_input(argc, argv);
 	if (b_input_nok > 0)
@@ -92,6 +53,12 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	collection.storeCollection(argc, argv);
+	hasDuplicate = collection.checkDuplicate();
+	if (hasDuplicate == true)
+	{
+		std::cout << RED << "Error: Input has duplicates." << D << "\n";
+		return (0);
+	}
 	std::cout << "before : ";
 	collection.printInputVector();
 	std::cout << "before : ";
