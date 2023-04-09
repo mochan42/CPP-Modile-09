@@ -6,7 +6,7 @@
 /*   By: moninechan <moninechan@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:21:01 by mochan            #+#    #+#             */
-/*   Updated: 2023/04/09 09:31:01 by moninechan       ###   ########.fr       */
+/*   Updated: 2023/04/09 09:45:28 by moninechan       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ bool	PmergeMe::checkDuplicate()
 
 
 //======== FUNCTIONS ============================================================================
-int	check_for_not_a_digit(char *s)
+int	checkIsDigit(char *s)
 {
 	if (*s && (*s == '-' || *s == '+'))
 		s++;
@@ -137,7 +137,7 @@ int	check_for_not_a_digit(char *s)
 	return (0);
 }
 
-int	out_of_range_number(char *s)
+int	checkOutOfRange(char *s)
 {
 	long	c;
 
@@ -147,7 +147,7 @@ int	out_of_range_number(char *s)
 	return (0);
 }
 
-int	check_input_method_2(int n, char **args)
+int	checkIsDigitAndOutOfRange(int n, char **args)
 {
 	int	i;
 	int	err_1;
@@ -157,14 +157,14 @@ int	check_input_method_2(int n, char **args)
 	err = 0;
 	while (i < n)
 	{
-		err_1 = check_for_not_a_digit(args[i]) + out_of_range_number(args[i]);
+		err_1 = checkIsDigit(args[i]) + checkOutOfRange(args[i]);
 		err = err + err_1;
 		i++;
 	}
 	return (err);
 }
 
-int	check_input(int argc, char **argv)
+int	checkInput(int argc, char **argv)
 {
 	int		err;
 
@@ -172,7 +172,7 @@ int	check_input(int argc, char **argv)
 	if (argc == 1)
 		;
 	if (argc > 1)
-		err = check_input_method_2(argc, argv);
+		err = checkIsDigitAndOutOfRange(argc, argv);
 	return (err);
 }
 

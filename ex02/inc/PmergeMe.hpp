@@ -6,7 +6,7 @@
 /*   By: moninechan <moninechan@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:20:42 by mochan            #+#    #+#             */
-/*   Updated: 2023/04/09 09:31:21 by moninechan       ###   ########.fr       */
+/*   Updated: 2023/04/09 09:45:39 by moninechan       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ class	PmergeMe
 		std::list<int>		_inputList;
 };
 
-int		check_for_not_a_digit(char *s);
-int		out_of_range_number(char *s);
-int		check_input_method_2(int n, char **args);
-int		check_input(int argc, char **argv);
+int		checkIsDigit(char *s);
+int		checkOutOfRange(char *s);
+int		checkIsDigitAndOutOfRange(int n, char **args);
+int		checkInput(int argc, char **argv);
 
 #endif
