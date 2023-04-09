@@ -6,7 +6,7 @@
 /*   By: moninechan <moninechan@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:20:54 by mochan            #+#    #+#             */
-/*   Updated: 2023/04/09 09:45:45 by moninechan       ###   ########.fr       */
+/*   Updated: 2023/04/09 10:12:47 by moninechan       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int main(int argc, char **argv)
 	collection.printInputVector();
 	std::cout << "before : ";
 	collection.printInputList();
-
+	vectFJMIsort(collection.getInputVector(), 0, collection.getInputVector().size() - 1);
+	std::cout << "after : ";
+	collection.printInputVector();
 	return (0);
 }
