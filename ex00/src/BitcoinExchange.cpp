@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:50:51 by moninechan        #+#    #+#             */
-/*   Updated: 2023/04/08 17:15:13 by mochan           ###   ########.fr       */
+/*   Updated: 2023/04/09 22:18:25 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //======== CONSTRUCTORS =========================================================================
 BitcoinExchange::BitcoinExchange() :
-	_btcExchangeRate(std::map<std::string, float>()), _input(std::map<std::string, float>())
+	_btcExchangeRate(std::map<std::string, float>())
 {
 	// std::cout << BLU << "Default constructor called from BitcoinExchange" << D << "\n";
 }
@@ -46,16 +46,6 @@ BitcoinExchange::~BitcoinExchange()
 
 
 //======== GETTER / SETTER ======================================================================
-void	BitcoinExchange::setInput(const std::pair<std::string, float>& setInput)
-{
-	 this->_input.insert(setInput);
-}
-
-std::map<std::string, float>	BitcoinExchange::getInputMap()
-{
-	return _input;
-}
-
 void	BitcoinExchange::setExchangeRate(const std::pair<std::string, float>& setExchangeRate)
 {
 	 this->_btcExchangeRate.insert(setExchangeRate);
@@ -78,7 +68,7 @@ void	BitcoinExchange::checkFileCanBeOpened(std::ifstream& file)
 	}
 }
 
-void	BitcoinExchange::storeDatabase(const std::string& infilePath)
+void	BitcoinExchange::storeDatabase(char* infilePath)
 {
 	std::ifstream infile(infilePath);
 	checkFileCanBeOpened(infile);
@@ -135,7 +125,7 @@ float	BitcoinExchange::findBtcRate(std::string date)
 	return (btcCoinRate);
 }
 
-void	BitcoinExchange::printBtcValue(const std::string& infilePath)
+void	BitcoinExchange::printBtcValue(char* infilePath)
 {
 	std::ifstream infile(infilePath);
 	checkFileCanBeOpened(infile);

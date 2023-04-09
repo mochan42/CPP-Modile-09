@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:50:45 by moninechan        #+#    #+#             */
-/*   Updated: 2023/04/08 16:57:37 by mochan           ###   ########.fr       */
+/*   Updated: 2023/04/09 22:39:23 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ int main(int ac, char **av)
 	}
 	BitcoinExchange	btcXchange;
 
-	std::string		databaseFile = "data.csv";	
-	btcXchange.storeDatabase(databaseFile);
-	std::map<std::string, float> input = btcXchange.getInputMap();
-	std::string		inputfilePath = av[1];
-	btcXchange.printBtcValue(inputfilePath);
+	btcXchange.storeDatabase((char *)"data.csv");
+	btcXchange.printBtcValue(av[1]);
 	return (0);
 }
