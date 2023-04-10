@@ -6,59 +6,51 @@
 /*   By: moninechan <moninechan@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:21:01 by mochan            #+#    #+#             */
-/*   Updated: 2023/04/09 10:49:50 by moninechan       ###   ########.fr       */
+/*   Updated: 2023/04/10 10:33:27 by moninechan       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.h"
+#include "PmergeMe.hpp"
 
 //======== CONSTRUCTORS =========================================================================
-PmergeMe::PmergeMe() :
-	_inputVector(), _inputList()
+PmergeMe::PmergeMe() : _inputVector(), _inputDeque()
 {
-	// std::cout << BLU << "Default constructor called from PmergeMe" << D << "\n";
 }
 
 PmergeMe::PmergeMe(const PmergeMe& src) :
-	_inputVector(src._inputVector), _inputList(src._inputList)
+	_inputVector(src._inputVector), _inputDeque(src._inputDeque)
 {
-	// std::cout << BLU << "Copy constructor called from PmergeMe" << D << "\n";
 }
-
 
 //======== OVERLOAD OPERATORS ===================================================================
 PmergeMe& PmergeMe::operator=(const PmergeMe& src)
 {
-	// std::cout << BLU << "Copy assignment operator called from PmergeMe" << D << "\n";
 	if (this != & src) // check for self assignment
 	{
 		this->_inputVector.clear();
 		this->_inputVector.insert(this->_inputVector.begin(), src._inputVector.begin(), src._inputVector.end());
-		this->_inputList.clear();
-		this->_inputList.insert(this->_inputList.begin(), src._inputList.begin(), src._inputList.end());
+		this->_inputDeque.clear();
+		this->_inputDeque.insert(this->_inputDeque.begin(), src._inputDeque.begin(), src._inputDeque.end());
 	}
 	return (*this);
 }
 
-
 //======== DESTRUCTOR ===========================================================================
 PmergeMe::~PmergeMe()
 {
-	// std::cout << CY << "Destructor called from PmergeMe" << D << "\n";
 }
 
-
-//======== GETTER / SETTER ======================================================================
-std::vector<int>&	PmergeMe::getInputVector()
+//======== GETTERS / SETTERS ====================================================================
+std::vector<int>&	PmergeMe::getVector()
 {
 	return this->_inputVector;
 }
 
-std::list<int>&		PmergeMe::getInputList()
+std::deque<int>&	PmergeMe::getDeque()
 {
-	return this->_inputList;
+	return this->_inputDeque;
 }
-
 
 //======== MEMBER FUNCTIONS =====================================================================
 void	PmergeMe::addNumberToVector(int setNumberValue)
@@ -66,151 +58,56 @@ void	PmergeMe::addNumberToVector(int setNumberValue)
 	this->_inputVector.push_back(setNumberValue);
 }
 
-void	PmergeMe::addNumberToList(int setNumberValue)
+void	PmergeMe::addNumberToDeque(int setNumberValue)
 {
-	this->_inputList.push_back(setNumberValue);
+	this->_inputDeque.push_back(setNumberValue);
 }
 
 void	PmergeMe::storeCollection(int argc, char **argv)
 {
-	int	i = 1;
-	int	value = 0;
-
-	while (i < argc)
+	for (int i = 1; i < argc; i++)
 	{
-		value = atoi(argv[i]);
-		addNumberToVector(value);
-		addNumberToList(value);
-		i++;
-	}	
+		addNumberToVector(atoi(argv[i]));
+		addNumberToDeque(atoi(argv[i]));
+	}
 }
 
-
-void	PmergeMe::printInputVector()
+void	PmergeMe::printVector()
 {
-	std::vector<int>::iterator it;
-
-	// std::cout << "std::vector\t: ";
-	for (it = getInputVector().begin(); it != getInputVector().end(); it++)
-	{
+	for (std::vector<int>::iterator it = getVector().begin(); it != getVector().end(); it++)
 		std::cout << *it << " ";
-	}
 	std::cout << "\n";
 }
 
-void	PmergeMe::printInputList()
+void	PmergeMe::printDeque()
 {
-	std::list<int>::iterator it;
-
-	// std::cout << "std::list\t: ";
-	for (it = getInputList().begin(); it != getInputList().end(); it++)
-	{
-		std::cout << *it << " ";
-	}
+	for (long unsigned int i = 0; i < this->getDeque().size(); i++)
+		std::cout << this->getDeque()[i] << " ";
 	std::cout << "\n";
 }
 
 bool	PmergeMe::checkDuplicate()
 {
-	bool hasDuplicate = false;
-    std::set<int> set(getInputVector().begin(), getInputVector().end()); // copy elements of vec into a set
+    std::set<int> set(getVector().begin(), getVector().end()); // copy elements of vec into a set
 
-    if (set.size() == getInputVector().size())
-        hasDuplicate = false;
-    else
-        hasDuplicate = true;
-	return (hasDuplicate);
+    if (set.size() == getVector().size())
+		return (false);
+	return (true);
 }
-
-
-//======== ALGO ============================================================================
-
-const int K = 2;
-
-void	vectFJMIinsertionSort(std::vector<int>& A, int first, int middle)
-{
-    for (int i = first; i < middle; i++)
-    {
-        int tempVal = A[i + 1];
-        int j = i + 1;
-        while (j > first && A[j - 1] > tempVal)
-		{
-            A[j] = A[j - 1];
-            j--;
-        }
-        A[j] = tempVal;
-    }
-}
-
-// A = {5, 4, 3, 2, 1}
-// void merge(int A[], int first, int middle, int last)
-void	vectFJMImerge(std::vector<int>& A, int first, int middle, int last)
-{
-	int n1 = middle - first + 1; // length of left array n1 = 3
-	int n2 = last - middle; // length of right array  n2 = 2
-	int LA[n1]; // declare Left Array
-	int RA[n2]; // declare Right Array
-	for (int i = 0; i < n1; i++) // copy values from A into LA
-	{
-		LA[i] = A[first + i]; // LA = {5, 4, 3}
-	}
-	for (int i = 0; i < n2; i++) // copy values from A into RA
-	{
-		RA[i] = A[middle + 1 + i]; // RA = {2, 1}
-	}
-	int RIDX = 0; // right index
-	int LIDX = 0; // left index
-	for (int i = first; i <= last; i++)
-	{
-		if (RIDX == n2) // reached end of right hand side Array
-		{
-			A[i] = LA[LIDX]; // left hand side index into A[i]
-			LIDX++;
-		}
-		else if (LIDX == n1)
-		{
-			A[i] = RA[RIDX];
-			RIDX++;
-		}
-		else if (RA[RIDX] > LA[LIDX]) // not true for RA{2} LA{5}
-		{
-			A[i] = LA[LIDX];
-			LIDX++;
-		}
-		else // We are copying the SMALLEST value into A[i]
-		{
-			A[i] = RA[RIDX]; // A[0] = RA[0] => A = {2, 4, 3, 2, 1}
-			RIDX++;
-		}
-	}
-}
-
-// void sort(int A[], int first, int last)
-void vectFJMIsort(std::vector<int>& A, int first, int last)
-{
-    int n = last - first + 1;
-    if (n > K) // K == 2 since we want to pair the values into sub-arrays of size 2
-    {
-        int middle = (first + last) / 2; // 1st. iteration q = 0 + n - 1 / 2
-        vectFJMIsort(A, first, middle); // 2nd. sort it 0 -> middle | left hand side
-        vectFJMIsort(A, middle + 1, last); // 3rd. it middle -> n - 1 | right hand side
-        vectFJMImerge(A, first, middle, last);
-    }
-    else
-        vectFJMIinsertionSort(A, first, last);
-}
-
 
 //======== FUNCTIONS ============================================================================
+
 int	checkIsDigit(char *s)
 {
-	if (*s && (*s == '-' || *s == '+'))
-		s++;
-	while (*s)
+	int i = 0;
+
+	if (s[i] && (s[i] == '-' || s[i] == '+'))
+		i++;
+	while (s[i])
 	{
-		if (isdigit(*s) != 1)
+		if (isdigit(s[i]) != 1)
 			return (1);
-		s++;
+		i++;
 	}
 	return (0);
 }
@@ -248,8 +145,8 @@ int	checkInput(int argc, char **argv)
 
 	err = 0;
 	if (argc == 1)
-		;
+		return (0);
 	if (argc > 1)
 		err = checkIsDigitAndOutOfRange(argc, argv);
 	return (err);
-}
+}	

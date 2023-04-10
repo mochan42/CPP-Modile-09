@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moninechan <moninechan@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:20:48 by mochan            #+#    #+#             */
-/*   Updated: 2023/04/08 19:22:10 by mochan           ###   ########.fr       */
+/*   Updated: 2023/04/10 10:33:02 by moninechan       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@
 # define D "\033[0m"
 
 # define MAX_INT 2147483647
-# define MIN_INT -2147483648
+# define MIN_INT 0
 
 #endif
