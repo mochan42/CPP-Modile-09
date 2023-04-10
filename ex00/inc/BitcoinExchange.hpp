@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moninechan <moninechan@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:50:47 by moninechan        #+#    #+#             */
-/*   Updated: 2023/04/09 22:18:50 by mochan           ###   ########.fr       */
+/*   Updated: 2023/04/10 09:22:53 by moninechan       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class	BitcoinExchange
 		void							checkFileCanBeOpened(std::ifstream& file);
 		void							storeDatabase(char* infilePath);
 		float							findBtcRate(std::string date);
+		int								checkDateValidity(std::string date);
 		void							printBtcValue(char* infilePath);
 		std::map<std::string, float>	getExchangeRateMap();
 		void    						setExchangeRate(const std::pair<std::string, float>& exchangeRate);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moninechan <moninechan@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:50:51 by moninechan        #+#    #+#             */
-/*   Updated: 2023/04/09 22:18:25 by mochan           ###   ########.fr       */
+/*   Updated: 2023/04/10 09:24:24 by moninechan       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,16 @@ float	BitcoinExchange::findBtcRate(std::string date)
 	return (btcCoinRate);
 }
 
+int	BitcoinExchange::checkDateValidity(std::string date)
+{
+    std::string    month = date.substr(5);
+    std::string    day = month.substr(3);
+    if (date > "2023" || month > "12" || day > "31")
+        return (-1);
+    return (0);
+}
+
+
 void	BitcoinExchange::printBtcValue(char* infilePath)
 {
 	std::ifstream infile(infilePath);
@@ -141,6 +151,12 @@ void	BitcoinExchange::printBtcValue(char* infilePath)
 			continue;
 		}
 		std::string date = line.substr(0, pos);
+		int checkDate = checkDateValidity(date);
+		if (checkDate < 0)
+		{
+			std::cout << RED << "Error: date not valid." << D << "\n";
+			continue;
+		}
 		std::string btcCoinsNumber = line.substr(pos + delimiter.length());
 
 		float btcCoinsNumberInt = static_cast<float>(atof(btcCoinsNumber.c_str()));
