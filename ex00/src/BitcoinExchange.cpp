@@ -6,7 +6,7 @@
 /*   By: moninechan <moninechan@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:50:51 by moninechan        #+#    #+#             */
-/*   Updated: 2023/04/10 09:24:24 by moninechan       ###   ########.fr       */
+/*   Updated: 2023/04/10 10:52:54 by moninechan       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ void	BitcoinExchange::printBtcValue(char* infilePath)
 			std::cout << RED << "Error: not a positive number." << D << "\n";
 			continue;
 		}
-		if (static_cast<long>(btcCoinsNumberInt) > static_cast<long>(MAX_INT))
+		if (static_cast<long>(btcCoinsNumberInt) > 1000)
 		{
 			std::cout << RED << "Error: too large a number." << D << "\n";
 			continue;
