@@ -4,12 +4,15 @@ This module is about leraning how to use C++ containers.<br>
 
 # ex 00
 This aim of this exercise it to create a program that :<br>
-- takes as an input a file `input.txt` in which each line contains a date and and a number of bitcoins,<br>
-- ouputs the value of these bitcoins by multipliying the BTC exchange rate at that date with the quantity of Bitcoins.
-
-In this exercise, I extract the exchange rates from a csv file `data.csv` :<br>
-![Capture d’écran 2023-04-29 à 14 10 54](https://user-images.githubusercontent.com/107719618/235301870-40366a9d-c4ad-4e88-a6aa-7fccb4a6e4a8.png)
+- takes as an input a file `input.txt` in which each line contains a date and and a number of bitcoins:<br>
+![Capture d’écran 2023-04-29 à 14 11 27](https://user-images.githubusercontent.com/107719618/235301919-4fa78c37-8604-4d58-be60-f9bc5697b372.png)<br>
+- ouputs to the terminal the value of these bitcoins by multipliying the BTC exchange rate at that date with the quantity of Bitcoins :<br>
+![Capture d’écran 2023-04-29 à 14 13 34](https://user-images.githubusercontent.com/107719618/235301965-44f9676a-8593-491f-881e-c6091d889ddd.png)
 <br>
+I extract the exchange rates from a csv file `data.csv` :
+
+![Capture d’écran 2023-04-29 à 14 10 54](https://user-images.githubusercontent.com/107719618/235302081-3918560a-57fc-4bac-9942-713d0cd10c6c.png)
+
 The exchange rates are then stored into a `std::map` container.
 The reason is that the exchange rate can be access from the date which is the key of the map container.
 
