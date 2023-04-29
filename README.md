@@ -7,7 +7,10 @@ This aim of this exercise it to create a program that :<br>
 - takes as an input a file `input.txt` in which each line contains a date and and a number of bitcoins,<br>
 - ouputs the value of these bitcoins by multipliying the BTC exchange rate at that date with the quantity of Bitcoins.
 
-In this exercise, I extract the exchange rates from a csv file `data.csv` and store them into a `std::map` container.
+In this exercise, I extract the exchange rates from a csv file `data.csv` :<br>
+![Capture d’écran 2023-04-29 à 14 10 54](https://user-images.githubusercontent.com/107719618/235301870-40366a9d-c4ad-4e88-a6aa-7fccb4a6e4a8.png)
+<br>
+The exchange rates are then stored into a `std::map` container.
 The reason is that the exchange rate can be access from the date which is the key of the map container.
 
 
