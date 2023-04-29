@@ -24,8 +24,11 @@ Basically, it means that the operator follows the operands where as we usually f
 "Usual" notation (operator between operands) : `4 x 3`<br>
 Polish notation (operator follows operands) : `4 3 x`<br>
 
-The container chosen here is `std::stack` : we use one stack to store the operands and one stock to store the operators.
+The container chosen here is `std::stack` : <br>
+- we use one stack to store the operands,
+- and another stack to store the operators.
 
 # ex 02
-The aim of this exercise is to code a merge-insert sorting algorithm and apply it to 2 different containers (`std::vector` and `std::queue`)
+The aim of this exercise is to code a merge-insert sorting algorithm and apply it to 2 different containers (`std::vector` and `std::queue`).
+
 
