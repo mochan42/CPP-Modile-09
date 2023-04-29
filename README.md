@@ -12,8 +12,7 @@ This aim of this exercise it to create a program that :<br>
 I extract the exchange rates from a csv file `data.csv` :
 
 ![Capture d’écran 2023-04-29 à 14 10 54](https://user-images.githubusercontent.com/107719618/235302081-3918560a-57fc-4bac-9942-713d0cd10c6c.png)
-
-The exchange rates are then stored into a `std::map` container.
+<br>The exchange rates are then stored into a `std::map` container.<br>
 The reason is that the exchange rate can be access from the date which is the key of the map container.
 
 
